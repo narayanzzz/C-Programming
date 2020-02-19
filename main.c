@@ -3,10 +3,18 @@
 int add(int,int);
 int sub(int,int);
 int mul(int,int);
+
 typedef int(*FuncPtr)(int,int);
+FuncPtr mptr[128];
+
+//Declaring the array of function pointers
+typedef int(*mathptr[128])(int,int);
+
+
 int compute(FuncPtr,int,int);
 FuncPtr* select(char);
 int evaluateArray(char, int, int);
+int evaluateArray1(char, int, int);
 
 int main(void)
 {
@@ -22,7 +30,15 @@ int main(void)
   printf("%d\n",compute(add,3,4));
   printf("%d\n",compute(sub,10,5));
 
-  printf("%d",evaluateArray('+', 10, 50));
+  printf("%d\n",evaluateArray('+', 10, 50));
+
+  mptr['+'] = add;
+  mptr['-'] = sub;
+  mptr['*'] = mul; 
+
+  printf("%d\n",evaluateArray1('+', 10, 20));
+  printf("%d\n",evaluateArray1('-', 10, 20));
+  printf("%d\n",evaluateArray1('*', 10, 20));  
 }
 
 int add(int a,int b)
@@ -68,4 +84,10 @@ int evaluateArray(char opcode, int num1, int num2)
 {
   FuncPtr ptr = select(opcode);
   return ptr(num1,num2);
+}
+
+int evaluateArray1(char opcode, int num1, int num2)
+{
+  FuncPtr operation = mptr[opcode];
+  return operation(num1,num2);
 }
