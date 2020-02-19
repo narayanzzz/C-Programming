@@ -10,8 +10,11 @@ int evaluateArray(char, int, int);
 
 int main(void)
 {
+
+  //Declaring the Function pointer
   int(*fptr)(int,int);
 
+  //Assigning the address of add function to fptr function pointer
   fptr = add;
 
   printf("%d\n",fptr(20,10));
@@ -36,11 +39,14 @@ int mul(int a,int b)
   return a*b;
 }
 
+//Funcion that takes function parameter
 int compute(FuncPtr fptr,int a,int b)
 {
   return fptr(a,b);
 }
 
+
+//Function that returns function parameter
 FuncPtr* select(char x)
 {
   switch(x)
