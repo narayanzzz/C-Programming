@@ -39,6 +39,16 @@ int main(void)
   printf("%d\n",evaluateArray1('+', 10, 20));
   printf("%d\n",evaluateArray1('-', 10, 20));
   printf("%d\n",evaluateArray1('*', 10, 20));  
+
+  //Comparing Function pointers
+  if(fptr==add)
+  {
+    printf("Both are equal\n");    
+  }
+  else
+  {
+    printf("Both are not equal\n");    
+  }
 }
 
 int add(int a,int b)
